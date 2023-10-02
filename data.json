@@ -1,0 +1,62 @@
+[
+    {
+        "name": "John",
+        "age": 30,
+        "city": "New York",
+        "color": "Gold"
+    },
+    {
+        "name": "Jane",
+        "age": 25,
+        "city": "San Francisco",
+        "color": "Lavender"
+    },
+    {
+        "name": "Bob",
+        "age": 40,
+        "city": "Chicago",
+        "color": "Salmon"
+    },
+    {
+        "name": "Mary",
+        "age": 32,
+        "city": "Boston",
+        "color": "Teal"
+    },
+    {
+        "name": "Kate",
+        "age": 21,
+        "city": "Phoenix",
+        "color": "Crimson"
+    },
+    {
+        "name": "Mike",
+        "age": 18,
+        "city": "Los Angeles",
+        "color": "Indigo"
+    },
+    {
+        "name": "Sarah",
+        "age": 19,
+        "city": "Denver",
+        "color": "Violet"
+    },
+    {
+        "name": "Tom",
+        "age": 35,
+        "city": "Houston",
+        "color": "Magenta"
+    },
+    {
+        "name": "Tim",
+        "age": 45,
+        "city": "Nashville",
+        "color": "Yellow"
+    },
+    {
+        "name": "Sam",
+        "age": 50,
+        "city": "Memphis",
+        "color": "Orange"
+    }
+]

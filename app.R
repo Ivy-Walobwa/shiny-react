@@ -1,16 +1,21 @@
 library(shiny.react)
+library(jsonlite)
 
-colors <- list("Gold", "Lavender", "Salmon")
-selectedColor <- reactiveVal("Gold")
+json_data <- fromJSON("./data.json")
 
 CustomComponents <- tags$script(HTML("(function() {
   const React = jsmodule['react'];
+  const ReactDOMServer = jsmodule['react-dom'];
   const Shiny = jsmodule['@/shiny'];
   const CustomComponents = jsmodule['CustomComponents'] ??= {};
 
   CustomComponents.ReactComponent = function(props) {
-    const {value} = props;
-    return React.createElement('div', {className:'nav', style:{backgroundColor: value, height:'120px', padding:'20px'}},`You have selected the color ${value}.`)
+   const {data} = props;
+    return  React.createElement('div', {style:{backgroundColor:data[0].color , padding:'20px'}}, [
+      React.createElement('h1', null, data[0].name),
+      React.createElement('p', null, data[0].city)
+    ])
+   
   };
 })()"))
 
@@ -36,7 +41,7 @@ ui<- function(id) {
           column(
               width = 3,
               wellPanel(
-                selectInput(ns("color"), label = "Background color", choices = colors),
+                selectInput(ns("person"), label = "Choose person", choices = unique(json_data$name))
              )
           ),
           column(
@@ -54,12 +59,14 @@ ui<- function(id) {
 
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    selectedColor <- reactiveVal("Gold")
-    observeEvent(input$color, {
-        selectedColor(input$color)
+    dataVal <- reactiveVal()
+
+    observeEvent(input$person, {
+      selected_data <- json_data[json_data$name == input$person, ]
+      dataVal(selected_data)
     })
     output$reactComponent<- renderReact({
-        ReactComponent( value = selectedColor())
+        ReactComponent(data = dataVal())
       })
   })
 
