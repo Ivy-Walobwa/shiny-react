@@ -55,16 +55,12 @@ ui<- function(id) {
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
     selectedColor <- reactiveVal("Gold")
-    rebuildReactComponent <- function() {
-      output$reactComponent<- renderReact({
-          ReactComponent( value = selectedColor())
-       })
-    }
     observeEvent(input$color, {
         selectedColor(input$color)
-        rebuildReactComponent()
     })
-    rebuildReactComponent()
+    output$reactComponent<- renderReact({
+        ReactComponent( value = selectedColor())
+      })
   })
 
 }
